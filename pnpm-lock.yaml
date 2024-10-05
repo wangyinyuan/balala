@@ -1,0 +1,37 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      tree-sitter:
+        specifier: ^0.21.1
+        version: 0.21.1
+
+packages:
+
+  node-addon-api@8.2.0:
+    resolution: {integrity: sha512-qnyuI2ROiCkye42n9Tj5aX1ns7rzj6n7zW1XReSnLSL9v/vbLeR6fJq6PU27YU/ICfYw6W7Ouk/N7cysWu/hlw==}
+    engines: {node: ^18 || ^20 || >= 21}
+
+  node-gyp-build@4.8.2:
+    resolution: {integrity: sha512-IRUxE4BVsHWXkV/SFOut4qTlagw2aM8T5/vnTsmrHJvVoKueJHRc/JaFND7QDDc61kLYUJ6qlZM3sqTSyx2dTw==}
+    hasBin: true
+
+  tree-sitter@0.21.1:
+    resolution: {integrity: sha512-7dxoA6kYvtgWw80265MyqJlkRl4yawIjO7S5MigytjELkX43fV2WsAXzsNfO7sBpPPCF5Gp0+XzHk0DwLCq3xQ==}
+
+snapshots:
+
+  node-addon-api@8.2.0: {}
+
+  node-gyp-build@4.8.2: {}
+
+  tree-sitter@0.21.1:
+    dependencies:
+      node-addon-api: 8.2.0
+      node-gyp-build: 4.8.2
