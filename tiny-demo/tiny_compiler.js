@@ -246,3 +246,12 @@ const emitter = (node) => {
 //   ],
 // };
 // console.log(emitter(ast));
+
+// compiler
+const compiler = (input) => {
+  let tokens = tokenizer(input);
+  let ast = parseProgram(tokens);
+  let output = emitter(ast);
+  return output;
+};
+console.log(compiler("(add 2 (subtract 4 2))"));
