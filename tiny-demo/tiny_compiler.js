@@ -178,3 +178,71 @@ const parseProgram = (tokens) => {
 //   { type: "paren", value: ")" },
 // ];
 // console.log(util.inspect(parseProgram(tokens2), { depth: null }));
+
+// emitter
+const emitNumber = (node) => node.value;
+const emitString = (node) => `"${node.value}"`;
+const emitExpression = (node) =>
+  `${node.name}(${node.params.map(emitter).join(", ")})`;
+const emitProgram = (node) =>
+  node.body.map((exp) => emitter(exp) + ";").join("\n");
+
+const emitter = (node) => {
+  switch (node.type) {
+    case "Program":
+      return emitProgram(node);
+    case "CallExpression":
+      return emitExpression(node);
+    case "NumberLiteral":
+      return emitNumber(node);
+    case "StringLiteral":
+      return emitString(node);
+    default:
+      throw new TypeError("Unknown node type: " + node.type);
+  }
+};
+
+// const ast = {
+//   type: "Program",
+//   body: [
+//     {
+//       type: "CallExpression",
+//       name: "print",
+//       params: [
+//         {
+//           type: "StringLiteral",
+//           value: "Hello",
+//         },
+//         {
+//           type: "NumberLiteral",
+//           value: "2",
+//         },
+//       ],
+//     },
+//     {
+//       type: "CallExpression",
+//       name: "add",
+//       params: [
+//         {
+//           type: "NumberLiteral",
+//           value: "2",
+//         },
+//         {
+//           type: "CallExpression",
+//           name: "subtract",
+//           params: [
+//             {
+//               type: "NumberLiteral",
+//               value: "4",
+//             },
+//             {
+//               type: "NumberLiteral",
+//               value: "2",
+//             },
+//           ],
+//         },
+//       ],
+//     },
+//   ],
+// };
+// console.log(emitter(ast));
